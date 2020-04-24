@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './bmi/bmi_tab.dart';
 
 void main() {
   runApp(TabBarDemo());
@@ -9,23 +10,20 @@ class TabBarDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.directions_car)),
-                Tab(icon: Icon(Icons.directions_transit)),
-                Tab(icon: Icon(Icons.directions_bike)),
+                Text("BMI"),
+                Text("Calories"),
               ],
             ),
-            title: Text('Tabs Demo'),
           ),
           body: TabBarView(
             children: [
-              Icon(Icons.directions_car),
+              BmiTab(),
               Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
             ],
           ),
         ),
