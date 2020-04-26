@@ -23,10 +23,13 @@ class _BmiFormState extends State<BmiForm> {
 
   String _validate(value) {
     if (value.isEmpty) {
-      return 'Please enter some text';
+      return 'Введите текст';
     }
-    if (double.tryParse(value) == null) {
-      return 'Please enter number';
+    if (int.tryParse(value) == null) {
+      return 'Введите число';
+    }
+    if (int.parse(value) <= 0) {
+      return 'Введите число больше 0';
     }
     return null;
   }
@@ -36,7 +39,7 @@ class _BmiFormState extends State<BmiForm> {
         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
         child: TextFormField(
           decoration: const InputDecoration(
-            hintText: 'Enter your height, cm',
+            hintText: 'Введите ваш рост, см',
           ),
           validator: _validate,
           controller: heightController,
@@ -48,7 +51,7 @@ class _BmiFormState extends State<BmiForm> {
         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
         child: TextFormField(
           decoration: const InputDecoration(
-            hintText: 'Enter your weight, kg',
+            hintText: 'Введите ваш вес, кг',
           ),
           validator: _validate,
           controller: weightController,
@@ -63,14 +66,14 @@ class _BmiFormState extends State<BmiForm> {
           if (_formKey.currentState.validate()) {
             double weight = double.parse(weightController.text);
             double height = double.parse(heightController.text) / 100;
-  
+
             setState(() {
               result = weight / pow(height, 2);
               show_outp = true;
             });
           }
         },
-        child: Text('Submit'),
+        child: Text('Рассчитать'),
       ),
     );
   }
@@ -86,7 +89,7 @@ class _BmiFormState extends State<BmiForm> {
             style: TextStyle(fontSize: 20),
           ));
     }
-    return Container(child: Text(""));
+    return SizedBox.shrink();
   }
 
   @override

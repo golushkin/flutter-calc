@@ -1,3 +1,4 @@
+import 'package:calculator/calories/calories_tab.dart';
 import 'package:flutter/material.dart';
 import './bmi/bmi_tab.dart';
 
@@ -12,6 +13,7 @@ class TabBarDemo extends StatelessWidget {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          resizeToAvoidBottomPadding: false,
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
@@ -23,7 +25,7 @@ class TabBarDemo extends StatelessWidget {
           body: TabBarView(
             children: [
               BmiTab(),
-              Icon(Icons.directions_transit),
+              CaloriesTab(),
             ],
           ),
         ),
